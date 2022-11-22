@@ -3,9 +3,13 @@
 
 
  im_in =imread("IMG_3422.JPG"); %input image
+
+ im_in = imresize(im_in, [300 500]);
+
  row = size(im_in,1);%row number of image
  col = size(im_in,2);%col number of image
- 
+
+
  cluster = 6; % 6 clusters
  [idx] = imsegkmeans(im_in,cluster);
  plabel = reshape(idx,row,col); 

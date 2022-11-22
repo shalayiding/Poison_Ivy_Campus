@@ -9,8 +9,8 @@ im_g = im(:,:,2);
 im_b = im(:,:,3);
 im_gray = rgb2gray(im);
 
-imshow(im);
-exit();
+% imshow(im);
+% exit();
 
 %  im_g    = imfilter( im_g, fspecial('Gauss', 9, 0.9), 'same', 'repl' );
 % 
