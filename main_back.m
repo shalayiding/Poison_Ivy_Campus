@@ -1,6 +1,7 @@
+
 im = im2double( imread("IMG_3127.JPG") );
-% im = imresize(im, [250 300]);
-im= imcrop(im,[100 100 500 600])
+im = imresize(im, [250 300]);
+% im= imcrop(im,[100 100 500 600])
 
 % break into different rgb channels 
 im_r = im(:,:,1);
@@ -8,8 +9,8 @@ im_g = im(:,:,2);
 im_b = im(:,:,3);
 im_gray = rgb2gray(im);
 
-imshow(im);
-exit();
+% imshow(im);
+% exit();
 
 %  im_g    = imfilter( im_g, fspecial('Gauss', 9, 0.9), 'same', 'repl' );
 % 
@@ -40,6 +41,8 @@ exit();
 level = graythresh(im_g);
 disp(level);
 bi_im = imbinarize(im_g,level );
+imshow(bi_im);
+
 
 
 
