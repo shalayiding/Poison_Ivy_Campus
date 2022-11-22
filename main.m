@@ -1,4 +1,4 @@
-im = im2double( imread("IMG_3127.JPG") );
+im = im2double( imread("IMG_3108.JPG") );
 im = imresize(im, [300 500]);
 
 
@@ -38,6 +38,8 @@ im_gray = rgb2gray(im);
 level = graythresh(im_g);
 disp(level);
 bi_im = imbinarize(im_g,level );
+imshow(bi_im);
+
 
 
 
