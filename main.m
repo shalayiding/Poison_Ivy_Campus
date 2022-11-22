@@ -9,36 +9,36 @@ im_b = im(:,:,3);
 im_gray = rgb2gray(im);
 
 
- im_g    = imfilter( im_g, fspecial('Gauss', 9, 0.9), 'same', 'repl' );
-
-
-    f_sobel_dIdy    = [ -1 -2 -1 ; 
-                         0  0  0 ; 
-                        +1 +2 +1 ] /8;
-    f_sobel_dIdx    = f_sobel_dIdy.';
-
-    dIdy            = imfilter( im_g, f_sobel_dIdy, 'same', 'repl' );
-    dIdx            = imfilter( im_g, f_sobel_dIdx, 'same', 'repl' );
-    dImag           = sqrt( dIdy.^2  + dIdx.^2 );
-for c = 1:size(dImag,1)
-    for l = 1:size(dImag,2)
-        if dImag(c,l) < 0.048
-            dImag(c,l) = 0;
-        else
-            dImag(c,l) = 1;
-        end
-        
-    end
-end
-imshow(dImag);
-pause(5);
+%  im_g    = imfilter( im_g, fspecial('Gauss', 9, 0.9), 'same', 'repl' );
+% 
+% 
+%     f_sobel_dIdy    = [ -1 -2 -1 ; 
+%                          0  0  0 ; 
+%                         +1 +2 +1 ] /8;
+%     f_sobel_dIdx    = f_sobel_dIdy.';
+% 
+%     dIdy            = imfilter( im_g, f_sobel_dIdy, 'same', 'repl' );
+%     dIdx            = imfilter( im_g, f_sobel_dIdx, 'same', 'repl' );
+%     dImag           = sqrt( dIdy.^2  + dIdx.^2 );
+% for c = 1:size(dImag,1)
+%     for l = 1:size(dImag,2)
+%         if dImag(c,l) < 0.048
+%             dImag(c,l) = 0;
+%         else
+%             dImag(c,l) = 1;
+%         end
+%         
+%     end
+% end
+% imshow(dImag);
+% pause(5);
 
 
 % using the default level to test the image
 level = graythresh(im_g);
 disp(level);
-bi_im = imbinarize(im_gray,level);
-imshowpair(im,bi_im,'montage');
+bi_im = imbinarize(im_g,level );
+
 
 
 % for r = 1:size(bi_im,1)
@@ -68,13 +68,14 @@ imshowpair(im,bi_im,'montage');
 
 % imshow(bi_im);
 
-bi_im = dImag;
+% bi_im = dImag;
 
 se2 = strel("disk",5);
-se3 = strel("disk",1);
+se3 = strel("disk",10);
 bi_im = imdilate(bi_im,se2);
 bi_im = imerode(bi_im,se3);
 
+% imshow(bi_im);
 % close to leaf color 
 
 
@@ -83,16 +84,15 @@ bi_im = imerode(bi_im,se3);
 [Bound,L,n,A] = bwboundaries(bi_im); 
 figure; imshow(bi_im); hold on; 
 
-        for i = 1:n 
-        % if it is greater than zero means it is possibly a dice 
-            if (nnz(A(:,i)) > 0) 
-                DiceBound = Bound{i}; 
-%                 if 100<=length(DiceBound)
-%                 
-                plot(DiceBound(:,2),DiceBound(:,1),"cyan","LineWidth",3); % start to plot the diceboun
-%                 end
-            end   
-        end 
+for i = 1:n 
+% if it is greater than zero means it is possibly a dice 
+%     if (nnz(A(:,i)) > 0) 
+        DiceBound = Bound{i}; 
+%         if 100<=length(DiceBound)       
+        plot(DiceBound(:,2),DiceBound(:,1),"cyan","LineWidth",3); % start to plot the diceboun
+%         end
+%     end   
+end 
     
 
 
