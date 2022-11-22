@@ -1,0 +1,11 @@
+function pipline_action(fn)
+    im = im2double( imread(fn) );
+%     kmean_color_split(im);
+    edgeex = edge_detect(im);
+    colorex = GColorExtract(im);
+    imshow(edeex);
+    pause(3);
+    imshow(colorex);
+    pause(3)
+end
+
