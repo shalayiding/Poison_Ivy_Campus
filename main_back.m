@@ -75,8 +75,8 @@ imshow(bi_im);
 
 % bi_im = dImag;
 
-se2 = strel("disk",5);
-se3 = strel("disk",10);
+se2 = strel("disk",3);
+se3 = strel("disk",2);
 bi_im = imdilate(bi_im,se2);
 bi_im = imerode(bi_im,se3);
 

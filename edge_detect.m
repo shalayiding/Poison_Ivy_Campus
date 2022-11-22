@@ -11,5 +11,4 @@ function edgeex = edge(im)
 
     im_result = edge(im_gray,'sobel');
     edgeex =im_result;
-    pause(3);
 end
