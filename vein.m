@@ -2,7 +2,7 @@
 % im = im2double( imread("IMG_3108.JPG") );
 
 
- im_in =imread("IMG_3108.JPG"); %input image
+ im_in =imread("IMG_3422.JPG"); %input image
  row = size(im_in,1);%row number of image
  col = size(im_in,2);%col number of image
  
