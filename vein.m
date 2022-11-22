@@ -2,7 +2,7 @@
 % im = im2double( imread("IMG_3108.JPG") );
 
 
- im_in =imread("IMG_3212.JPG"); %input image
+ im_in =imread("IMG_3108.JPG"); %input image
  row = size(im_in,1);%row number of image
  col = size(im_in,2);%col number of image
  
@@ -11,13 +11,25 @@
  plabel = reshape(idx,row,col); 
  rgb = repmat(plabel,[1 1 3]); % change pixel label to rgb label
  
- for k = 1:cluster   % take each image out by cluster
-     color = im_in;
-     color(rgb ~= k) = 0; 
-     figure;
-     imshow(color);
- end
+%  for k = 1:cluster   % take each image out by cluster
+%      color = im_in;
+%      color(rgb ~= k) = 0; 
+%      figure;
+%      imshow(color);
+%  end
 
+    color = im_in;
+     color(rgb ~= 2) = 0; 
+   im_c = rgb2gray(color);
+%     figure,imshow(im_c);
+  im_c = imbinarize(im_c);
+%   figure,imshow(im_c);
+ se2 = strel("disk",20);
+se3 = strel("disk",20);
+
+bi_im = imerode(im_c,se3);
+ bi_im = imdilate(im_c,se2);
+figure,imshow(bi_im);
 
 
 % im_gray = rgb2gray(im);

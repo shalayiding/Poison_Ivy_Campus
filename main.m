@@ -1,4 +1,4 @@
-im = im2double( imread("IMG_3127.JPG") );
+im = im2double( imread("IMG_3141.JPG") );
 im = imresize(im, [300 500]);
 
 
