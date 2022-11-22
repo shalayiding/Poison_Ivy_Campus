@@ -1,7 +1,7 @@
 
 im = im2double( imread("IMG_3127.JPG") );
 % im = imresize(im, [250 300]);
-im= imcrop(im,[100 100 500 600]);
+im= imcrop(im,[100 100 500 600])
 
 % break into different rgb channels 
 im_r = im(:,:,1);
