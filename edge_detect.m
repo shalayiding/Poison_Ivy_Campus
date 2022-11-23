@@ -2,6 +2,12 @@ function edgeex = edge(im)
 %     im_in = im2double(imread("IMG_3108.JPG"));
     im_in = im2double(imread(im));
     im_g = im_in(:,:,2);
+
+    im_g = imresize(im_g,[2000 3000]);
+    flag = centerCropWindow2d(size(im_g),[1500 2000])
+    im_g = imcrop(im_g,flag);
+
+
     im_gray = rgb2gray(im_in);
     im_g    = imfilter( im_g, fspecial('Gauss', 9, 0.9), 'same', 'repl' );
 
@@ -25,7 +31,6 @@ for c = 1:size(dImag,1)
     end
 end
 edgeex = dImag;
-pause(5);
    
 end
 

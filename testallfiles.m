@@ -24,20 +24,22 @@ function pipline_action(fn)
 %     
 
     disjoinMask = colorex & gc;
-%     edgeex = edge_detect(disjoinMask);
+%     edgeex = edge_detect(fn);
 
-%     se3 = strel("disk",35);
+
+%     se3 = strel("disk",25);
 %     disjoinMask = imerode(disjoinMask,se3);
 %         se2 = strel("disk",15);
 %     disjoinMask = imdilate(disjoinMask,se2);
-
+    
 
 
     [Bound,L,n,A] = bwboundaries(disjoinMask);
     imshow(disjoinMask); hold on;
     for i=1 :n
         if nnz(A(:,i))>0
-            disbound= Bound {i}
+            disbound= Bound {i};
+            
             plot(disbound(:,2),disbound(:,1),"cyan","lineWidth",3);
         end
     end
