@@ -7,7 +7,7 @@ function colorex = color_extract(im)
     % using the default level to test the image
     level = graythresh(im_g);
     disp(level);
-    bi_im = imbinarize(im_g,level+0.12 );
+    bi_im = imbinarize(im_g,level);
     colorex = bi_im;
     
 
