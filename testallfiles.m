@@ -2,16 +2,39 @@ function show_all_files_in_dir( )
  % Find all files that match this regular expression:
  file_list = dir('*.jpg');
  posion_image_number = 0;
+ posion_file_name = [];
+ non_posion_file_name = [];
+ num_posion = 0;
+ num_nonposion = 0;
  for counter = 1 : length( file_list )
      fn = file_list(counter).name;
+     
      possible = pipline_action(fn); % run main function and get graphs.
      fprintf('file %3d = %s\n', counter, fn );
      if possible >= 3 
          posion_image_number = posion_image_number+1;
+         posion_file_name= [posion_file_name fn];
+         num_posion=num_posion+1;
      end
- end
- fprintf ("The number of images that contain posion IVY is : %d \n",posion_image_number);
+     if possible < 3 
+         non_posion_file_name = [non_posion_file_name fn];
+         num_nonposion = num_nonposion+1;
+     end
+     
+     if possible == 0
+        fprintf("There is no leaf detected : %d \n",possible);
+     end
 
+ end
+ 
+ fprintf("following images DO NOT have posion IVY \n");
+ disp(non_posion_file_name);
+ fprintf("following images have posion IVY \n");
+ disp(posion_file_name);
+ fprintf("The accuracy of the following images set is \n");
+ fprintf("Percentage of posion IVY images in folder :%f \n",(num_posion/length(file_list))*100 )
+ fprintf("Percentage of None posion IVY images in folder :%f \n",(num_nonposion/length(file_list)) *100)
+ fprintf ("The number of images that contain posion IVY is : %d \n",posion_image_number);
 
 end
 
